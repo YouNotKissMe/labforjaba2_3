@@ -105,5 +105,6 @@ public class Main {
         nam.print();
         Selo av=new Selo("Оренбург", 284,145);
         av.print();
+        System.out.println("КАК ТАК");
     }
 }
