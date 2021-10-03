@@ -1,7 +1,7 @@
 package com.company;
 import java.util.Scanner;
 
-class terretory {
+class terretory { //пробуем ответвления
     double space;
     String nameofspace;
     int people;
