@@ -1,5 +1,6 @@
 package com.company;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 class terretory { //пробуем ответвления12
     double space;
@@ -21,7 +22,7 @@ class terretory { //пробуем ответвления12
     }
 
 }
-class City extends terretory{
+class City extends terretory implements Comparable<City>{
     int hs;
     String namesize;
     City(String nameofspace,double space,int people){
@@ -60,6 +61,11 @@ class City extends terretory{
         }
         System.out.println();
     }
+    String getName(){return nameofspace;}
+    public int compareTo(City a){
+
+        return nameofspace.compareTo(a.getName());
+    }
 }
 class Selo extends terretory{
     String namesize;
@@ -95,16 +101,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+        TreeSet<City> test=new TreeSet<City>();
 
         terretory a=new terretory("Москва",123.4,209);
         a.print();
         terretory b=new terretory("Москва",123.4,209);
         b.print();
-        City nam=new City("Питер",124500,12300000);
+        City nam=new City("Senct",124500,12300000);
+        City nam1=new City("Moscow",124500,12300000);
+        City nam3=new City("Orenburg",124500,12300000);
         nam.print();
-        Selo av=new Selo("Оренбург", 284,145);
+        Selo av=new Selo("orenburg", 284,145);
         av.print();
-        System.out.println("КАК ТАК");
+        test.add(nam);
+        test.add(nam1);
+        test.add(nam3);
+        for(City h:test){
+            System.out.println(h);
+        }
     }
 }
