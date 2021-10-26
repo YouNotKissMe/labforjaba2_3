@@ -1,8 +1,12 @@
 package com.company;
 import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.TreeSet; // вот этот модуль прочитай
 
-class terretory { //пробуем ответвления12
+interface DotaMainIvent{
+    double arena(int a);
+    String printed(double a);
+}
+class terretory implements Comparable<terretory>{
     double space;
     String nameofspace;
     int people;
@@ -20,11 +24,15 @@ class terretory { //пробуем ответвления12
         System.out.println("Плотность населения проживающего на территории площадью "+space+" составляет "+people/space);
 
     }
+    public int compareTo(terretory anotherterretory){
+        return Double.compare( anotherterretory.space, this.space);
+    }
 
 }
-class City extends terretory implements Comparable<City>{
+class City extends terretory implements DotaMainIvent{
     int hs;
     String namesize;
+
     City(String nameofspace,double space,int people){
         super(nameofspace,space,people);
         int q=people/50000;
@@ -61,13 +69,24 @@ class City extends terretory implements Comparable<City>{
         }
         System.out.println();
     }
-    String getName(){return nameofspace;}
-    public int compareTo(City a){
-
-        return nameofspace.compareTo(a.getName());
+    public double arena(int people){
+        double qq;
+        qq=(double)people / 100000;
+        return qq;
     }
+    public String printed(double a){
+        int q=(int)a;
+        if(q>0){
+        return "В вашем городе можно построить "+q+" арен и следовательно можно провести турнир по доте";
+        }
+        else
+            return "В вашем городе нельзя провести турнир по доте";
+    }
+
+
+
 }
-class Selo extends terretory{
+class Selo extends terretory {
     String namesize;
 
     Selo(String nameofspace,double space,int people){
@@ -93,6 +112,7 @@ class Selo extends terretory{
 
     }
 
+
 }
 
 
@@ -101,23 +121,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        TreeSet<City> test=new TreeSet<City>();
 
+        TreeSet<terretory> myterretoryArrayList = new TreeSet<terretory>(); /// реализация
         terretory a=new terretory("Москва",123.4,209);
-        a.print();
-        terretory b=new terretory("Москва",123.4,209);
-        b.print();
+        //a.print();
+
         City nam=new City("Senct",124500,12300000);
         City nam1=new City("Moscow",124500,12300000);
+
+        double nm = nam.arena(nam.people);
+        System.out.println(nam.printed(nm));
         City nam3=new City("Orenburg",124500,12300000);
-        nam.print();
+        //nam.print();
         Selo av=new Selo("orenburg", 284,145);
-        av.print();
-        test.add(nam);
-        test.add(nam1);
-        test.add(nam3);
-        for(City h:test){
-            System.out.println(h);
+        //av.print();
+        myterretoryArrayList.add(nam);
+        myterretoryArrayList.add(av);
+        myterretoryArrayList.add(a);
+
+        for(terretory h: myterretoryArrayList) { //// результат
+            h.print();
         }
     }
 }
